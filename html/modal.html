@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>modal</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+         body{
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .modal-btn{
+            width: 300px;;
+            background-color: burlywood;
+            border: none;
+            border-radius: 5px;
+        }
+        .modal{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background:rgba(0, 0, 0, .6);
+        }
+        .modal>.modal-cont{
+            padding-bottom: 10%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            height: 20%;
+            width: 30%;
+            background-color: white;
+        }
+        .modal>.modal-cont>h1{
+            width: 100%;
+            text-align: center;
+        }
+        .modal>.modal-cont>button{
+            width: 120px;
+        }
+        .md-hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>modal</h2>
+    <button id="open" ><h1>click modal</h1></button>
+    <div class="modal md-hidden">
+        <div class ="modal-cont">
+            <h1>im modal</h1>
+            <button class="close-md"> <h3>close</h3></button>
+        </div>
+    </div>
+    <script>
+        const openbtn = document.getElementById('open');
+        const closeBtn = document.querySelector('.close-md');
+        const modal = document.querySelector('.modal');
+
+        const closeModal = () =>{   
+            modal.classList.add('md-hidden');
+        }
+        
+        const openModal = () =>{
+            modal.classList.remove('md-hidden');
+        };
+        
+        openbtn.addEventListener("click", openModal);
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', closeModal);
+    </script>
+</body>
+</html>
