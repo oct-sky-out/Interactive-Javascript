@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Menu</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        #menu-container{
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        .menu{
+            width: 100vw;
+            display: grid;
+            gap: 5%;
+            justify-items: center;
+        }
+        .menu_btn{
+            width: 10%;
+            grid-column-start: 1;
+            background: url('../img/menu.png');
+            background-repeat: no-repeat;
+            border: none;
+            cursor: pointer;
+        }
+        .bell_btn{
+            grid-column-start: 3;
+            width: 10%;
+            background: url('../img/bell.png');
+            background-position: 5% 0;
+            background-repeat: no-repeat;
+            border: none;
+            cursor: pointer;
+        }
+        .menu> h2{
+            text-align: center;        
+        }
+        .menu-tap,.bell-tap{
+            background-color: rgb(251, 175, 33);
+            width: 20%;
+            height: 100vw;
+            display: flex;
+            position: absolute;
+            z-index: 1;
+            opacity: .9;
+        }
+        .menu-tap{
+            left: -20%;
+            transition: left .8s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+            
+        }
+        .bell-tap{
+            right: -20%;
+            transition: right .8s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        }
+        .menu-out,.bell-out{
+            width: 25%;
+            background-color: inherit;
+        }
+        .menu-out-btn,.bell-out-btn{
+            margin-top: 5%;
+            width: 100%;
+            height: 3%;
+            border: none;
+            background-color: inherit;
+            background-image: url('/img/menu_out.png');
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+        .menu-cont,.bell-cont{
+            list-style: none;
+        }
+        .menu-cont>li, .bell-cont>li{
+            margin: 3% 0;
+            font-size: 2rem;
+        }
+        .menu-cont>li>a, .bell-cont>li>a{
+            color: black;
+            text-decoration: none;
+        }
+        .active_menu{
+            left: 0;
+        }
+        .active_bell{
+            right: 0;
+        }
+        @media screen and (max-width: 1024px) {
+            .bell_btn,.menu_btn{
+                width: 30%;
+            }
+            .menu-tap, .bell-tap{
+                width:35%;
+                height: 100vh;
+            }
+            .menu-tap{
+                left: -35%;
+            }
+            .bell-tap{
+                right: -35%;
+            }
+            .menu-out-btn, .bell-out-btn{
+                height: 8%;
+            }
+            .active_menu{
+                 left: 0%;
+            }
+            .active_bell{
+                right: 0%;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .menu{
+                gap: 1%;
+            }
+            .menu> h2{
+            text-align: center;  
+            }
+            .bell_btn,.menu_btn{
+                width: 70%;
+            }
+            .menu-tap, .bell-tap{
+                width:60%;
+                height: 100vh;
+            }
+            .menu-tap{
+                left: -60%;
+            }
+            .bell-tap{
+                right: -60%;
+            }
+            .menu-out-btn, .bell-out-btn{
+                height: 15%;
+            }
+            .menu-cont>li, .bell-cont>li{
+                margin: 3% 0;
+                font-size: 1.5rem;
+            }
+            .active_menu{
+                left: 0%;
+            }
+            .active_bell{
+                right: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="menu-container">
+        <div class="menu">
+            <button class="menu_btn"></button>   
+            <div class="menu-tap ">
+                <div class="menu-out">
+                    <button class="menu-out-btn"></button>
+                </div>
+                <ul class="menu-cont">
+                    <li><a href=""> Menu1 </a></li>
+                    <li><a href=""> Menu2 </a></li>
+                    <li><a href=""> Menu3 </a></li>
+                </ul>
+            </div>
+            <h2>Mobile Menu</h2>
+            <button class="bell_btn"></button>
+            <div class="bell-tap active">
+                <div class="bell-out">
+                    <button class="bell-out-btn"></button>
+                </div>
+                <ul class="bell-cont">
+                    <li><a href=""> 알림1 </a></li>
+                    <li><a href=""> 알림2 </a></li>
+                    <li><a href=""> 알림3 </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        const menuIn = document.querySelector('.menu_btn');
+        const menuOut = document.querySelector('.menu-out-btn');
+        const bellIn = document.querySelector('.bell_btn');
+        const bellOut = document.querySelector('.bell-out-btn');
+
+        const openMenuBell = (menuBell) => () =>{
+            const menuCont = document.querySelector(`.${menuBell}`);
+            if(menuBell == 'menu-tap'){
+                menuCont.classList.add('active_menu');
+                const currentBell = document.querySelector('.active_bell');
+                if(currentBell){
+                    currentBell.classList.remove('active_bell')
+                }    
+            }
+            else{
+                menuCont.classList.add('active_bell');
+                const currentMenu = document.querySelector('.active_menu');
+                if(currentMenu){
+                   currentMenu.classList.remove('active_menu');
+                }
+            }
+        }
+        const closeMenuBell = (menuBell) => () => {
+            const menuCont = document.querySelector(`.${menuBell}`);
+            if(menuBell == 'menu-tap'){
+                menuCont.classList.remove('active_menu');
+            }
+            else{
+                menuCont.classList.remove('active_bell');
+            }
+        }
+
+        menuIn.addEventListener('click',openMenuBell('menu-tap'));
+        menuOut.addEventListener('click', closeMenuBell('menu-tap'));
+        bellIn.addEventListener('click',openMenuBell('bell-tap'));
+        bellOut.addEventListener('click', closeMenuBell('bell-tap'));
+    </script>
+</body>
+</html>
