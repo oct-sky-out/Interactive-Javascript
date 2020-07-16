@@ -8,32 +8,45 @@
         body{
             margin: 0;
             padding: 0;
-            overflow: hidden;
         }
         #menu-container{
-            width: 100vw;
-            height: 100vh;
-            position: relative;
+            width: 100%;
+            display: grid;
         }
         .menu{
-            width: 100vw;
+            grid-row-start: 1;
+            width: 100%;
+            position: -webkit-sticky;
+            position: sticky;
+            top:0;
             display: grid;
             gap: 5%;
             justify-items: center;
+            background-color: rgb(251, 175, 33);
+            overflow: hidden;
         }
+        .content-text{
+            grid-row-start: 2;
+            margin: 10px auto;
+            text-align: center;
+            width: 40%;
+            height: 2000px;
+        }
+        
         .menu_btn{
             width: 10%;
             grid-column-start: 1;
-            background: url('../img/menu.png');
+            background: url('/img/menu.png');
             background-repeat: no-repeat;
+            background-position: 0 45%;
             border: none;
             cursor: pointer;
         }
         .bell_btn{
             grid-column-start: 3;
             width: 10%;
-            background: url('../img/bell.png');
-            background-position: 5% 0;
+            background: url('/img/bell.png');
+            background-position: 0 45%;
             background-repeat: no-repeat;
             border: none;
             cursor: pointer;
@@ -46,18 +59,18 @@
             width: 20%;
             height: 100vw;
             display: flex;
-            position: absolute;
+            position: fixed;
             z-index: 1;
             opacity: .9;
         }
         .menu-tap{
             left: -20%;
-            transition: left .8s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+            transition: left .5s ease;
             
         }
         .bell-tap{
             right: -20%;
-            transition: right .8s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+            transition: right .5s ease;
         }
         .menu-out,.bell-out{
             width: 25%;
@@ -152,8 +165,11 @@
 </head>
 <body>
     <div id="menu-container">
-        <div class="menu">
-            <button class="menu_btn"></button>   
+            <div class="menu">
+                <button class="menu_btn"></button>   
+                <h2>Mobile Menu</h2>
+                <button class="bell_btn"></button>
+            </div>
             <div class="menu-tap ">
                 <div class="menu-out">
                     <button class="menu-out-btn"></button>
@@ -163,10 +179,8 @@
                     <li><a href=""> Menu2 </a></li>
                     <li><a href=""> Menu3 </a></li>
                 </ul>
-            </div>
-            <h2>Mobile Menu</h2>
-            <button class="bell_btn"></button>
-            <div class="bell-tap active">
+            </div> 
+            <div class="bell-tap">
                 <div class="bell-out">
                     <button class="bell-out-btn"></button>
                 </div>
@@ -176,8 +190,13 @@
                     <li><a href=""> 알림3 </a></li>
                 </ul>
             </div>
-        </div>
+            <div class="content-text">
+                content
+                <br>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex reprehenderit tenetur laboriosam commodi fuga temporibus sint voluptatibus unde, neque a, sequi sit. Maxime molestias veniam at consequuntur natus vel recusandae corporis deserunt alias! Exercitationem voluptatem architecto libero reprehenderit. Perspiciatis, cumque? Tempore minima rem consequatur, quam, ducimus eius facilis odio quod necessitatibus esse mollitia officiis sed a ipsa impedit quis? Libero repudiandae, deserunt minima eum officia eius. Quaerat laudantium omnis nam id non! Saepe ullam vero dolorum. Pariatur, quam? Unde, laboriosam! Expedita, eius eveniet mollitia sed saepe iure at consectetur incidunt ex quam sunt reiciendis, quos, fuga voluptatem fugiat. Excepturi, eveniet!
+            </div>
     </div>
+  
     <script>
         const menuIn = document.querySelector('.menu_btn');
         const menuOut = document.querySelector('.menu-out-btn');
