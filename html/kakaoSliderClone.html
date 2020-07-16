@@ -4,69 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/kakaoSliderClone.css">
     <title>KaKaO Slider Page</title>
     <style>
-        #slider-main{
-            display: grid;
-            gap: 5%;
-            width:100vw;
-            height:100vh;
-        }
-        .slider{
-            position: relative;
-            grid-row-start: 1;
-            grid-row-end: 6;
-        }
-        .slider_item{
-            position: absolute;
-            margin: 0 auto;
-            width: 100%;
-            height: 100%;
-            background-position: 50% 0;
-            background-repeat: no-repeat;
-            background-size: cover;
-            opacity: 0;
-            transition: opacity .5s ease-in-out;
-        }
-        .active{
-            opacity: 1;
-        }
-        .slider1{
-            background: url("../img/kakao1.png");
-        }
-        .slider2{
-            background: url("../img/kakao2.png");
-        }
-        .slider3{
-            background: url("../img/kakao3.png");
-        }
-        .slider4{
-            background: url("../img/kakao4.png");
-        }
-        .btn-left,.btn-right{
-            position: absolute;
-            top:40%
-        }
-        .btn-right{
-            right: 0;;
-        }
-        .num-btn{
-            display: flex;
-            justify-content: center;
-            height: 15%;
-        }
-        .btn-info{
-            margin: 0 1%;
-            border-radius: 50%;
-            bottom: 0;
-            right: 50%;;
-        }
-        .btn-light :active{
-            background-color: rgb(255, 212, 20);
-        }
-        .sliide-No {
-            display: none;
-        }
+       
     </style>
 </head>
 <body>
@@ -86,75 +27,6 @@
             <button type="button" class="btn btn-sm btn-info btn4"></button>
         </div>
     </div>
-    <script>
-        const CLASS_ACTIVE = 'active';
-
-        const leftButton = document.querySelector(".btn-left");
-        const rightButton = document.querySelector(".btn-right");
-
-        const slide = () =>{
-            const first_slider = document.querySelector('.slider_item:first-child');
-            const currentSlide = document.querySelector(`.${CLASS_ACTIVE}`);
-            if(currentSlide){
-                currentSlide.classList.remove(CLASS_ACTIVE);
-                const nextSlide = currentSlide.nextElementSibling;
-                if(nextSlide){
-                    nextSlide.classList.add(CLASS_ACTIVE);
-                }else {
-                    first_slider.classList.add(CLASS_ACTIVE);
-                }
-            }else{
-                first_slider.classList.add(CLASS_ACTIVE);
-            }
-        }
-        const prevSlide = ()=>{
-            const lastSlider = document.querySelector('.slider_item:last-child')
-            const currentSlide = document.querySelector(`.${CLASS_ACTIVE}`);
-            if(currentSlide){
-                currentSlide.classList.remove(CLASS_ACTIVE);
-                const prevSlide = currentSlide.previousElementSibling;
-                if(prevSlide){
-                    prevSlide.classList.add(CLASS_ACTIVE);
-                }else {
-                    lastSlider.classList.add(CLASS_ACTIVE);
-                }
-            }else{
-                lastSlider.classList.add(CLASS_ACTIVE);
-            }
-        }
-
-        slide();
-        rightButton.addEventListener('click',slide);
-        leftButton.addEventListener('click',prevSlide);
-
-        const selectBtn = (select) => ()=>{
-            const currentSlide = document.querySelector(`.${CLASS_ACTIVE}`);
-                switch (select) {
-                    case 1:     
-                        currentSlide.classList.remove(CLASS_ACTIVE);
-                        document.querySelector('.slider1').classList.add(CLASS_ACTIVE);
-                        break;
-                    case 2:     
-                        currentSlide.classList.remove(CLASS_ACTIVE);
-                        document.querySelector('.slider2').classList.add(CLASS_ACTIVE);
-                        break;
-                    case 3:
-                        currentSlide.classList.remove(CLASS_ACTIVE);
-                        document.querySelector('.slider3').classList.add(CLASS_ACTIVE);
-                        break;
-                    case 4:     
-                        currentSlide.classList.remove(CLASS_ACTIVE);
-                        document.querySelector('.slider4').classList.add(CLASS_ACTIVE);
-                        break;
-                }
-        }
-
-        document.querySelector('.btn1').addEventListener('click',selectBtn(1));
-        document.querySelector('.btn2').addEventListener('click',selectBtn(2));
-        document.querySelector('.btn3').addEventListener('click',selectBtn(3));
-        document.querySelector('.btn4').addEventListener('click',selectBtn(4));
-
-        setInterval(slide,5000)
-    </script>
+    <script src="../JS/kakaoSliderClone.js"></script>
 </body>
 </html>
