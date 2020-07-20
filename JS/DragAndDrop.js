@@ -1,6 +1,8 @@
 const boxs = document.querySelectorAll('.box');
 const zones = document.querySelectorAll('.zone');
+
 let dragBox = null;
+
 for(const box of boxs){
     box.addEventListener('dragstart', () =>{
         console.log('dragstart');

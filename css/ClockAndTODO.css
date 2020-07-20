@@ -1,0 +1,117 @@
+* {
+  font-family: 'Do Hyeon', sans-serif;
+}
+
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body {
+  height: 100vh;
+  background-color: #19191a;
+  -webkit-animation: fadein .5s forwards linear;
+          animation: fadein .5s forwards linear;
+}
+
+#container {
+  width: 100%;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  gap: 2%;
+  grid-gap: 2%;
+}
+
+.clock, .form, .userEnroll, .todo-form, .todo-list {
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+  grid-column-end: 3;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+.clock {
+  font-weight: bold;
+  font-size: 15rem;
+  color: #f7fbe1;
+}
+
+.form, .todo-form {
+  width: 100%;
+  text-align: center;
+}
+
+.inputUser, .userTODO {
+  padding: 1% 1%;
+}
+
+.inputUser, .userTODO {
+  border: none;
+  border-bottom: 5px solid #f9d56e;
+  background-color: rgba(255, 255, 255, 0);
+  width: 40%;
+  font-size: 2rem;
+  color: #f9d56e;
+  outline-style: none;
+  outline-color: #f9d56e;
+}
+
+.inputUser::-webkit-input-placeholder, .userTODO::-webkit-input-placeholder {
+  color: #f9d56e;
+  text-align: center;
+}
+
+.inputUser:-ms-input-placeholder, .userTODO:-ms-input-placeholder {
+  color: #f9d56e;
+  text-align: center;
+}
+
+.inputUser::-ms-input-placeholder, .userTODO::-ms-input-placeholder {
+  color: #f9d56e;
+  text-align: center;
+}
+
+.inputUser::placeholder, .userTODO::placeholder {
+  color: #f9d56e;
+  text-align: center;
+}
+
+.userEnroll {
+  font-size: 4rem;
+  color: #f9d56e;
+}
+
+.form, .userEnroll {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.weather {
+  position: fixed;
+  top: 1.5%;
+  right: 5rem;
+  color: #ffb300;
+  font-size: 2.5rem;
+  font-weight: bolder;
+}
+/*# sourceMappingURL=ClockAndTODO.css.map */
