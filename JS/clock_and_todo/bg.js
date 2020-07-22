@@ -6,7 +6,7 @@ const setBg = (randomNum) =>{
     const image = new Image();
     image.src = `../img/bg${randomNum}.jpg`;
     body.style.cssText = `background-image : url(${image.src}); 
-    background-position: center center; `
+    background-position: center; background-repeat : no-repeat;`
 }
 
 const getRandomNumber = () =>{

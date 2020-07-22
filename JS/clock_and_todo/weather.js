@@ -9,7 +9,7 @@ const getWeather = function(lat, lon){
         return res.json()
     })
     .then((json) =>{
-        docWeather.innerHTML = `${json.main.temp}°C 🌏${json.name}`;
+        docWeather.innerHTML = `${json.main.temp}°C 📍${json.name}`;
     })
 }
 
@@ -28,7 +28,8 @@ const successGeo = (position) =>{
 }
 
 const errorGeo = () =>{
-    console.error('Can\' access Loaction');
+    docWeather.style.cssText = "font-size : 2rem;"
+    docWeather.innerHTML = `Oh, Location not found! 🙊`
 }
 const askWeather = function() {
      navigator.geolocation.getCurrentPosition(successGeo, errorGeo)

@@ -25,6 +25,7 @@ body {
   background-color: #19191a;
   -webkit-animation: fadein .5s forwards linear;
           animation: fadein .5s forwards linear;
+  overflow: hidden;
 }
 
 #container {
@@ -102,10 +103,6 @@ body {
   display: none;
 }
 
-.active {
-  display: block;
-}
-
 .weather {
   position: fixed;
   top: 1.5%;
@@ -113,5 +110,44 @@ body {
   color: #ffb300;
   font-size: 2.5rem;
   font-weight: bolder;
+}
+
+.notice-btn {
+  position: absolute;
+  color: #ffb300;
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.todo-notice {
+  position: fixed;
+  width: 30%;
+  height: 100%;
+  background-color: #ffb300;
+  opacity: .9;
+  left: -30%;
+  top: 0;
+  -webkit-transition: left .5s ease;
+  transition: left .5s ease;
+  overflow: hidden scroll;
+}
+
+.close-notice {
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  position: relative;
+  left: 65%;
+  cursor: pointer;
+}
+
+.active {
+  display: block;
+}
+
+.active-todo {
+  left: 0%;
 }
 /*# sourceMappingURL=ClockAndTODO.css.map */

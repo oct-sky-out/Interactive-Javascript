@@ -41,8 +41,8 @@ const addTodo = (text) =>{
     deleteBtn.addEventListener('click',deleteTodo); // 삭제 버튼을 누를 떄 해당 todo를 삭제하는 이벤트
     list.appendChild(span); // li태그안에 span을 자식으로 추가
     list.appendChild(deleteBtn); // 삭제 버튼도 마찬가지
-    list.style.cssText = "color : #f9d56e; font-size : 2rem; list-style: none;"
-    deleteBtn.style.cssText = 'cursor: pointer;'
+    list.style.cssText = "color : white; font-size : 2rem; list-style: none;"
+    deleteBtn.style.cssText = 'cursor: pointer; position: absolute; right: 0;'
     todoList.appendChild(list); // todoList의 ul태그에 li태그를 자식으로 넣음
 
     const newId = todoTexts.length + 1; // id값 생성 => todoTexts의 배열의 길이에 1씩 더함
