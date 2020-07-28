@@ -1,0 +1,24 @@
+{
+  "name": "interactiveJS",
+  "version": "1.0.0",
+  "description": "<h1> 직접 만드면서 배워가는 Interactive Javascript!</h1>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OctSkyOut/Interactive-Javascript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OctSkyOut/Interactive-Javascript/issues"
+  },
+  "homepage": "https://github.com/OctSkyOut/Interactive-Javascript#readme",
+  "devDependencies": {
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5"
+  }
+}
