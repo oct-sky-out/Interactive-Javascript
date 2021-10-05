@@ -1,0 +1,191 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2rem;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}
+
+.material-icons.orange500 {
+  color: #f28c07;
+}
+
+#container {
+  width: 100%;
+  height: 100%;
+  background-color: #f2bb07;
+  background-image: linear-gradient(217deg, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0) 70.71%);
+}
+#container .page-intro {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+#container .page-intro .intro {
+  position: absolute;
+  width: 50%;
+  font-size: 3rem;
+  font-weight: 500;
+  text-align: center;
+  display: block;
+  left: 25%;
+  top: 50%;
+}
+#container .menu-container {
+  width: 8%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #ffffff;
+  opacity: 0.8;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+}
+#container .menu-container .menu-mini {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-flow: column;
+}
+#container .menu-container .menu-mini .menu-mini-ng-big, #container .menu-container .menu-mini .menu-mini-rgb-plus {
+  width: 50%;
+  margin: 40% auto 20% auto;
+  cursor: pointer;
+}
+#container .menu-container .menu-mini-circle {
+  width: 25px;
+  height: 25px;
+  margin: 20% 0;
+  border: 5px solid transparent;
+  border-radius: 50%;
+  background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to right, #f2bb07be, #ff9d00aa, #ff4800aa);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  text-align: center;
+  cursor: pointer;
+}
+#container .menu-large {
+  width: 20%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 8%;
+  padding: 0;
+  margin: 0;
+  background-color: #ffffff;
+  opacity: 0.8;
+}
+#container .menu-large .menu-large-block {
+  width: 100%;
+  margin-top: 40%;
+}
+#container .menu-large .menu-large-info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+#container .menu-large .menu-large-info .menu-large-rgb {
+  display: flex;
+  width: 80%;
+  height: 26px;
+  margin: 10% 0 8% 0;
+  text-align: center;
+}
+#container .menu-large .menu-large-info .menu-large-rgb .menu-large-info-rgb {
+  width: 80%;
+  border-bottom: 3px solid #000;
+  vertical-align: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+#container .menu-large .menu-large-info .menu-large-rgb .menu-large-info-del {
+  display: block;
+  margin-left: 8%;
+  cursor: pointer;
+}
+#container .menu-large .menu-large-info .menu-large-input-form {
+  margin-top: 20%;
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+#container .menu-large .menu-large-info .menu-large-input-form .color-code-input {
+  width: 80%;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 3px solid #000;
+  font-size: 1.5rem;
+  vertical-align: center;
+}
+#container .menu-large .menu-large-info .menu-large-input-form .color-code-input:focus {
+  outline: none;
+}
+#container .menu-large .menu-large-info .menu-large-input-form .menu-large-done {
+  display: block;
+  margin-left: 8%;
+  cursor: pointer;
+}
+#container .change-color-container {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  font-size: 2rem;
+  bottom: 10%;
+  right: 10%;
+  width: 100px;
+}
+#container .change-color-container .prv-color, #container .change-color-container .next-clor {
+  display: block;
+  margin: 5%;
+  width: 100px;
+  height: 100%;
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 30%;
+  color: #ffffff;
+  transition: background-color 0.5s;
+  cursor: pointer;
+}
+#container .change-color-container .prv-color:hover, #container .change-color-container .next-clor:hover {
+  background-color: #ffd549;
+  color: #f28c07;
+}
+
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: url(path/to/MaterialIcons-Regular.eot);
+  /* For IE6-8 */
+  src: local("Material Icons"), local("MaterialIcons-Regular"), url(path/to/MaterialIcons-Regular.woff2) format("woff2"), url(path/to/MaterialIcons-Regular.woff) format("woff"), url(path/to/MaterialIcons-Regular.ttf) format("truetype");
+}
+
+/*# sourceMappingURL=RGBColorPicker.css.map */
