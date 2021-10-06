@@ -1,9 +1,13 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:"";content:none}table{border-collapse:collapse;border-spacing:0}
+
 body{
   width: 100vw;
   height: 100vh; 
   margin :0;
   font-family: 'Source Sans Pro', sans-serif;
 }
+
+
 // ----- ICON SETTING -----
 .material-icons {
  font-family: 'Material Icons';
@@ -35,25 +39,108 @@ body{
 }
 // ----- ICON SETTING END -----
 // ----- MAIN CONTENT -----
+#canvas{
+    position: absolute;
+    // width: 100%;
+    // height: 100%;
+  }
+#colorHEX{
+  position: absolute;
+  width: 5%;
+  height: 2%;
+  background-color: #FFF;
+  color : #000;
+}
 #container {
   width: 100%;
   height: 100%;
-  background-color: #f2bb07;
-  background-image: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%);
+  position: absolute;
+  display: flex;
+  justify-content: center;
   & .page-intro{
-    // z-index: 1;
+    z-index: 1;
     position: absolute;
+    background: #000;
     width: 100%;
     height: 100%;
+    animation-name: introFadeOut;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-delay: 3s;
+    animation-direction: normal;
+    animation-iteration-count: unset;
+    animation-fill-mode: forwards;
+    -webkit-animation-name: introFadeOut;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-delay: 3s;
+    -webkit-animation-direction: normal;
+    -webkit-animation-iteration-count: unset;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-name: introFadeOut;
+    -moz-animation-duration: 1.5s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-delay: 3s;
+    -moz-animation-direction: normal;
+    -moz-animation-iteration-count: unset;
+    -moz-animation-fill-mode: forwards;
     & .intro{
-      position: absolute;
+      position: relative;
       width: 50%;
       font-size: 3rem;
+      color: #ffffff;
       font-weight: 500;
       text-align: center;
       display: block;
       left: 25%;
-      top : 50%
+      top : 50%;
+      animation-name: introFadeIn;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-delay: 0s;
+      animation-direction: normal;
+      animation-iteration-count: unset;
+      -webkit-animation-name: introFadeIn;
+      -webkit-animation-duration: 1s;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-delay: 0s;
+      -webkit-animation-direction: normal;
+      -webkit-animation-iteration-count: unset;
+      -moz-animation-name: introFadeIn;
+      -moz-animation-duration: 1s;
+      -moz-animation-timing-function: linear;
+      -moz-animation-delay: 0s;
+      -moz-animation-direction: normal;
+      -moz-animation-iteration-count: unset;
+      & .intro-text-cover{
+        width: 0%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        background-color: #000000;
+        animation-name: disappearIntro;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        animation-delay: 2s;
+        animation-direction: reverse;
+        animation-iteration-count: unset;
+        animation-fill-mode: forwards;
+        -webkit-animation-name: disappearIntro;
+        -webkit-animation-duration: 1s;
+        -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        -webkit-animation-delay: 2s;
+        -webkit-animation-direction: reverse;
+        -webkit-animation-iteration-count: unset;
+        -webkit-animation-fill-mode: forwards;
+        -moz-animation-name: disappearIntro;
+        -moz-animation-duration: 1s;
+        -moz-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        -moz-animation-delay: 2s;
+        -moz-animation-direction: reverse;
+        -moz-animation-iteration-count: unset;
+        -moz-animation-fill-mode: forwards;
+      }
     }
   }
   & .menu-container{
@@ -65,6 +152,7 @@ body{
     opacity: .8;
     position: absolute;
     top: 0;
+    left: 0;
     overflow: hidden;
     & .menu-mini{
       width : 100%;
@@ -104,20 +192,23 @@ body{
     margin: 0;
     background-color: #ffffff;
     opacity: .8;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
     & .menu-large-block{
         width: 100%;
         margin-top: 40%;
     }
     & .menu-large-info{
       width: 100%;
-      height : 100%;
+      height : 25px;
       display: flex;
       align-items: center;
       flex-flow: column;
       & .menu-large-rgb{
         display: flex;
         width: 80%;
-        height: 26px;
+        height: 100%;
         margin: 10% 0 8% 0;
         text-align: center;
         & .menu-large-info-rgb{
@@ -183,7 +274,27 @@ body{
        background-color: #ffd549;
        color :#f28c07
       }
-    
+  }
+  & .copy-msg-container {
+    width: 50%;
+    height: 0%;
+    & .copy-msg{
+      width: 200px;
+      height: 70px;
+      position: absolute;
+      bottom: 10%;
+      left : 45%;
+      background-color: #0000004b;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      & .msg{
+      font-size: 1.5rem;
+      margin: auto 0;
+      }
+    }
   }
 
 }
@@ -201,3 +312,17 @@ body{
      url(path/to/MaterialIcons-Regular.ttf) format('truetype');
  }
 // ----- GOOGLE FONT-FACE END -----
+// ----- ANIMATION FUNC -----
+@keyframes introFadeIn{
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+@keyframes disappearIntro{
+  from{width:100%}
+  to{width: 0%;}
+}
+@keyframes introFadeOut{
+  from{opacity: 1; z-index: 1;}
+  to{opacity: 0; z-index: 0;}
+}
+// ----- ANIMATION FUNC END-----

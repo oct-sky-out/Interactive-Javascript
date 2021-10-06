@@ -13,8 +13,12 @@
   </head>
   <body>
     <div id="container">
+    <canvas id="canvas"></canvas>
       <div class="page-intro">
-        <div class="intro">PASTEL COLOR PICKER</div>
+        <div class="intro">
+          <span class="intro-text">PASTEL COLOR PICKER</span>
+          <div class="intro-text-cover"></div>
+        </div>
       </div>
       <menu class="menu-container">
         <div class="menu-mini">
@@ -25,9 +29,8 @@
           <div class="menu-mini-circle"></div>
           <div class="menu-mini-circle"></div>
           <span class="material-icons orange500 menu-mini-rgb-plus">add</span>
-        </div>
-        <div class="menu-large">
-          <div class="menu-large-block"></div>
+          <div class="menu-large">
+          <span class="menu-large-block"></span>
           <div class="menu-large-info">
             <div class="menu-large-rgb">
               <span class="menu-large-info-rgb">#ffffff</span>
@@ -55,11 +58,20 @@
             </div>
           </div>
         </div>
+        </div>
+        
       </menu>
       <div class="change-color-container">
         <span class="prv-color"><</span>
         <span class="next-clor">></span>
       </div>
+      <div class="copy-msg-container">
+        <div class="copy-msg">
+          <span class="msg">Copied! 복사완료!</span>
+        </div>
+      </div>
     </div>
+    <script src="/JS/RGBColorPicker/IntroEnd.js"></script>
+    <script src="../JS/RGBColorPicker/RGBColorPicker.js"></script>
   </body>
   </html>
