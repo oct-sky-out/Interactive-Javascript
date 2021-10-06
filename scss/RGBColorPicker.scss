@@ -42,8 +42,14 @@ body{
 #container {
   width: 100%;
   height: 100%;
-  background-color: #f2bb07;
-  background-image: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%);
+  & .color-pick-canvas{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #f2bb07;
+    background-image: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%);;
+  }
+  
   & .page-intro{
     z-index: 1;
     position: absolute;
@@ -288,7 +294,7 @@ body{
   to{width: 0%;}
 }
 @keyframes introFadeOut{
-  from{opacity: 1;}
+  from{opacity: 1; z-index: 1;}
   to{opacity: 0; z-index: 0;}
 }
 // ----- ANIMATION FUNC END-----
