@@ -74,19 +74,90 @@ body {
   background-image: linear-gradient(217deg, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0) 70.71%);
 }
 #container .page-intro {
+  z-index: 1;
   position: absolute;
+  background: #000;
   width: 100%;
   height: 100%;
+  animation-name: introFadeOut;
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+  animation-delay: 3s;
+  animation-direction: normal;
+  animation-iteration-count: unset;
+  animation-fill-mode: forwards;
+  -webkit-animation-name: introFadeOut;
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-delay: 3s;
+  -webkit-animation-direction: normal;
+  -webkit-animation-iteration-count: unset;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation: introFadeOut;
+  -moz-animation-duration: 1.5s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-delay: 3s;
+  -moz-animation-direction: normal;
+  -moz-animation-iteration-count: unset;
+  -moz-animation-fill-mode: forwards;
 }
 #container .page-intro .intro {
-  position: absolute;
+  position: relative;
   width: 50%;
   font-size: 3rem;
+  color: #ffffff;
   font-weight: 500;
   text-align: center;
   display: block;
   left: 25%;
   top: 50%;
+  animation-name: introFadeIn;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-direction: normal;
+  animation-iteration-count: unset;
+  -webkit-animation-name: introFadeIn;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-delay: 0s;
+  -webkit-animation-direction: normal;
+  -webkit-animation-iteration-count: unset;
+  -moz-animation-name: introFadeIn;
+  -moz-animation-duration: 1s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-delay: 0s;
+  -moz-animation-direction: normal;
+  -moz-animation-iteration-count: unset;
+}
+#container .page-intro .intro .intro-text-cover {
+  width: 0%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: #000000;
+  animation-name: disappearIntro;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  animation-delay: 2s;
+  animation-direction: reverse;
+  animation-iteration-count: unset;
+  animation-fill-mode: forwards;
+  -webkit-animation-name: disappearIntro;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  -webkit-animation-delay: 2s;
+  -webkit-animation-direction: reverse;
+  -webkit-animation-iteration-count: unset;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-name: disappearIntro;
+  -moz-animation-duration: 1s;
+  -moz-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  -moz-animation-delay: 2s;
+  -moz-animation-direction: reverse;
+  -moz-animation-iteration-count: unset;
+  -moz-animation-fill-mode: forwards;
 }
 #container .menu-container {
   width: 8%;
@@ -224,6 +295,31 @@ body {
   src: url(path/to/MaterialIcons-Regular.eot);
   /* For IE6-8 */
   src: local("Material Icons"), local("MaterialIcons-Regular"), url(path/to/MaterialIcons-Regular.woff2) format("woff2"), url(path/to/MaterialIcons-Regular.woff) format("woff"), url(path/to/MaterialIcons-Regular.ttf) format("truetype");
+}
+@keyframes introFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes disappearIntro {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+@keyframes introFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    z-index: 0;
+  }
 }
 
 /*# sourceMappingURL=RGBColorPicker.css.map */
