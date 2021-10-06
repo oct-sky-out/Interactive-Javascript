@@ -98,7 +98,7 @@ body {
   -webkit-animation-direction: normal;
   -webkit-animation-iteration-count: unset;
   -webkit-animation-fill-mode: forwards;
-  -moz-animation: introFadeOut;
+  -moz-animation-name: introFadeOut;
   -moz-animation-duration: 1.5s;
   -moz-animation-timing-function: linear;
   -moz-animation-delay: 3s;
