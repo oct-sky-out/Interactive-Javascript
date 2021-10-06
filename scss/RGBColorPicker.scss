@@ -39,17 +39,24 @@ body{
 }
 // ----- ICON SETTING END -----
 // ----- MAIN CONTENT -----
+#canvas{
+    position: absolute;
+    // width: 100%;
+    // height: 100%;
+  }
+#colorHEX{
+  position: absolute;
+  width: 5%;
+  height: 2%;
+  background-color: #FFF;
+  color : #000;
+}
 #container {
   width: 100%;
   height: 100%;
-  & .color-pick-canvas{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #f2bb07;
-    background-image: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%);;
-  }
-  
+  position: absolute;
+  display: flex;
+  justify-content: center;
   & .page-intro{
     z-index: 1;
     position: absolute;
@@ -145,6 +152,7 @@ body{
     opacity: .8;
     position: absolute;
     top: 0;
+    left: 0;
     overflow: hidden;
     & .menu-mini{
       width : 100%;
@@ -266,7 +274,27 @@ body{
        background-color: #ffd549;
        color :#f28c07
       }
-    
+  }
+  & .copy-msg-container {
+    width: 50%;
+    height: 0%;
+    & .copy-msg{
+      width: 200px;
+      height: 70px;
+      position: absolute;
+      bottom: 10%;
+      left : 45%;
+      background-color: #0000004b;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      & .msg{
+      font-size: 1.5rem;
+      margin: auto 0;
+      }
+    }
   }
 
 }
