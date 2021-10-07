@@ -142,7 +142,7 @@ body{
     }
   }
   & .menu-container{
-    width: 25%;
+    width:8%;
     height: 100%;
     padding :0;
     margin: 0;
@@ -155,25 +155,18 @@ body{
       height: 100%;
       text-align: center;
       display: grid;
-      grid-template-rows: 100px 1fr 100px;
-      grid-template-columns: 1fr 2fr;
-      // flex-wrap: wrap;
-      // align-items: center;
-      // flex-flow: column;
-      & .menu-mini-ng-big, & .menu-mini-rgb-plus{
+      grid-template-rows: 100px 1fr 50px 100px;
+      grid-template-columns: 1fr;
+      & .menu-mini-btn-container{
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        cursor: pointer;
+        & .menu-mini-ng-big{
+          cursor: pointer;
+        }
       }
-    }
-    & .menu-mini-rgb-plus{
-      grid-column-start: 1;
-      grid-column-end: 2;
-      grid-row-start: 3;
-      grid-row-end: 4;
     }
     & .menu-mini-circle-container{
       width: 100%;
@@ -198,102 +191,120 @@ body{
         cursor: pointer;    
       }
     }
-    
   }
-
   & .menu-large{
-    width: 100%;
+    &.close-menu{
+      bottom: -100%;
+    }
+    &.open-menu{
+      bottom: 0%;
+      
+    }
+    display: grid;
+    transition: .5s ease-in;
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: 1fr;
+    position: fixed;
+    width: 20%;
     height: 100%;
+    left: 8%;
     padding :0;
     margin: 0;
     background-color: #ffffff;
     opacity: .8;
+    & .menu-large-rgb-container{
     grid-row-start: 2;
     grid-row-end: 3;
-    grid-column-start: 2;
-    grid-column-end: 3;
     display: flex;
-    flex-flow: column;
-    align-items: center;
-    // & .menu-large-info{
-    //   width: 100%;
-    //   height : 100%;
-    //   display: flex;
-    //   align-items: center;
-    //   flex-flow: column;
-      & .menu-large-rgb{
-        display: flex;
+    flex-direction: column;
+    & .menu-large-rgb{
+      display: flex;
+      width: 80%;
+      height: 25px;
+      margin: 10% 0;
+      justify-content: center;
+      align-items: center;
+      align-self: center;
+      & .menu-large-info-rgb{
         width: 80%;
-        height: 25px;
-        margin: 13% 0;
-        justify-content: center;
-        align-items: center;
-        align-self: center;
-        & .menu-large-info-rgb{
-          width: 80%;
-          border-bottom : 3px solid #000;
-          font-size: 1.5rem;
-          cursor: pointer;
-        }
-        & .menu-large-info-del{
-          margin-left: 8%;
-          cursor: pointer;
-        }
+        border-bottom : 3px solid #000;
+        font-size: 1.5rem;
+        cursor: pointer;
       }
-      & .menu-large-input-form{
-        margin-top: 20%;
+      & .menu-large-info-del{
+        margin-left: 8%;
+        cursor: pointer;
+      }
+    }
+    & .menu-large-input-form{
+      margin-top: 20%;
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      align-self: center;
+      & .color-code-input{
         width: 80%;
-        display: flex;
-        justify-content: space-around;
-        & .color-code-input{
-          width: 80%;
-          box-sizing: border-box;
-          border : none;
-          border-bottom : 3px solid #000;
-          font-size: 1.5rem;
-          vertical-align: center;
-        }
-        & .color-code-input:focus{
-          outline: none;
-        }
-        & .menu-large-done{
-          display: block;
-          margin-left: 8%;
-          cursor: pointer;
-        }
-      // }
+        box-sizing: border-box;
+        border : none;
+        border-bottom : 3px solid #000;
+        font-size: 1.5rem;
+        vertical-align: center;
+      }
+      & .color-code-input:focus{
+        outline: none;
+      }
+      & .menu-large-done{
+        display: block;
+        margin-left: 8%;
+        cursor: pointer;
+      }
     }
   }
+}
 
   & .change-color-container{
-    position: absolute;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     font-size: 2rem;
-    bottom: 10%;
-    right:10%;
-    width:100px;
+    width:100%;
+    height: 45px;
     & .prv-color, .next-clor{
-      display: block;
       margin: 5%;
-      width:100px;
-      height: 100%;
+      width: 45px;
+      height: 45px;
       text-align: center;
-      border: 2px solid #ffffff;
+      border: 2px solid #f28c07;
       border-radius: 30%;
-      color: #ffffff;
+      color: #f28c07;
       transition: background-color .5s;
+      vertical-align: center;
+      line-height: 45px;
       cursor: pointer;
     }
     & .prv-color:hover, & .next-clor:hover {
-      background-color: #ffd549;
+      background-color: #ffd000;
       color :#f28c07
     }
   }
   & .copy-msg-container {
     width: 50%;
     height: 0%;
+    visibility: hidden;
     & .copy-msg{
+      &.appear-msg {
+        visibility: visible;
+        opacity: 1;
+      }
+      &.disappear-msg{
+        visibility: hidden;
+        opacity: 0;
+      }
+      transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       width: 200px;
       height: 70px;
       position: absolute;
@@ -301,13 +312,11 @@ body{
       left : 45%;
       background-color: #0000004b;
       text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       border-radius: 10px;
       & .msg{
-      font-size: 1.5rem;
-      margin: auto 0;
+        font-size: 1.5rem;
+        vertical-align: center;
+        line-height: 70px;
       }
     }
   }
@@ -322,9 +331,6 @@ body{
   src: url(path/to/MaterialIcons-Regular.eot); /* For IE6-8 */
   src: local('Material Icons'),
       local('MaterialIcons-Regular'),
-      url(path/to/MaterialIcons-Regular.woff2) format('woff2'),
-      url(path/to/MaterialIcons-Regular.woff) format('woff'),
-      url(path/to/MaterialIcons-Regular.ttf) format('truetype');
 }
 // ----- GOOGLE FONT-FACE END -----
 // ----- ANIMATION FUNC -----
@@ -339,5 +345,15 @@ body{
 @keyframes introFadeOut{
   from{opacity: 1; z-index: 1;}
   to{opacity: 0; z-index: 0;}
+}
+@keyframes ShowMsg{
+  from{
+    display: none;
+    opacity: 0;
+  }
+  to{
+    display: block;
+    opacity: 1;
+  }
 }
 // ----- ANIMATION FUNC END-----
