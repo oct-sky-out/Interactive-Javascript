@@ -1,5 +1,5 @@
   <!DOCTYPE html>
-  <html lang="en">
+  <html lang="kr">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,16 +22,23 @@
       </div>
       <menu class="menu-container">
         <div class="menu-mini">
-          <span class="material-icons orange500 menu-mini-ng-big">menu</span>
-          <div class="menu-mini-circle"></div>
-          <div class="menu-mini-circle"></div>
-          <div class="menu-mini-circle"></div>
-          <div class="menu-mini-circle"></div>
-          <div class="menu-mini-circle"></div>
-          <span class="material-icons orange500 menu-mini-rgb-plus">add</span>
-          <div class="menu-large">
-          <span class="menu-large-block"></span>
-          <div class="menu-large-info">
+          <div class="menu-mini-btn-container menu-btn-1">
+            <span class="material-icons orange500 menu-mini-ng-big">menu</span>
+          </div>
+          <div class="menu-mini-circle-container">
+            <div class="menu-mini-circle"></div>
+            <div class="menu-mini-circle"></div>
+            <div class="menu-mini-circle"></div>
+            <div class="menu-mini-circle"></div>
+            <div class="menu-mini-circle"></div>
+          </div>
+          <div class="change-color-container">
+            <span class="prv-color"><</span>
+            <span class="next-clor">></span>
+          </div>
+        </div>
+        <div class="menu-large close-menu">
+          <div class="menu-large-rgb-container">
             <div class="menu-large-rgb">
               <span class="menu-large-info-rgb">#ffffff</span>
               <span class="material-icons orange500 menu-large-info-del">delete</span>
@@ -58,20 +65,16 @@
             </div>
           </div>
         </div>
-        </div>
-        
       </menu>
-      <div class="change-color-container">
-        <span class="prv-color"><</span>
-        <span class="next-clor">></span>
-      </div>
+      
       <div class="copy-msg-container">
         <div class="copy-msg">
           <span class="msg">Copied! 복사완료!</span>
         </div>
       </div>
     </div>
-    <script src="/JS/RGBColorPicker/IntroEnd.js"></script>
     <script src="../JS/RGBColorPicker/RGBColorPicker.js"></script>
+    <script src="../JS/RGBColorPicker/IntroEnd.js"></script>
+    <script src="../JS/RGBColorPicker/ShowReverseLargeMenu.js"></script>
   </body>
   </html>

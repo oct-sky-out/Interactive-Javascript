@@ -1,8 +1,9 @@
 "use strict";
+// CopyComplete와 parseToHEX를 import
+import copyComplete from "./CopyComplete";
+import parseToHEX from "./ParseToHEX";
 
 var canvas = document.getElementById("canvas");
-var colorHex = document.getElementById("colorHEX");
-var hexInput = document.querySelector(".color-code-input");
 var ctx = canvas.getContext("2d");
 var hex = "";
 canvas.width = window.innerWidth;
@@ -18,18 +19,13 @@ const setCanvasGradiant = (ctx) => {
 	ctx.fill();
 };
 
-const rgbToHex = (r, g, b) => {
-	if (r > 255 || g > 255 || b > 255) throw "Over the rgb state.";
-	return ((r << 16) | (g << 8) | b).toString(16);
-};
-
 const copyHex = function (e) {
 	var x = e.offsetX;
 	var y = e.offsetY;
-	var c = this.getContext("2d");
-	var p = c.getImageData(x, y, 1, 1).data;
-	hex = "#" + rgbToHex(p[0], p[1], p[2]);
+	var [r, g, b] = this.getContext("2d").getImageData(x, y, 1, 1).data;
+	hex = "#" + parseToHEX(r, g, b);
 	navigator.clipboard.writeText(hex);
+	copyComplete();
 };
 
 setCanvasGradiant(ctx);
