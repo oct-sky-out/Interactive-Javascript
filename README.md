@@ -16,7 +16,6 @@
   <a href ="https://octskyout.github.io/Interactive-Javascript/html/ClockAndTODO.html">  작품 보기</a>
 
 <h3> 6번째 작품 : 컬러피커 만들기 💅</h3>
-  <a href ="https://octskyout.github.io/Interactive-Javascript/html/ClockAndTODO.html">  작품 보기</a>
-  <span> 조금남았어요 🚧</span>
+  <span>제작중입니다.🚧</span>
   
 <h4> 👋 다음작품도 기대해주세요~ 👋</h4>
