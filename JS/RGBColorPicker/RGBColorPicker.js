@@ -1,13 +1,23 @@
 "use strict";
-// CopyComplete와 parseToHEX를 import
-import copyComplete from "./CopyComplete";
-import parseToHEX from "./ParseToHEX";
-
 var canvas = document.getElementById("canvas");
+const copyMsg = document.querySelector(".copy-msg");
+
 var ctx = canvas.getContext("2d");
 var hex = "";
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+const canvasSizeChange = () => {
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+};
+
+function parseToHEX(r, g, b) {
+	if (r > 255 || g > 255 || b > 255) throw "Over the rgb state.";
+	return ((r << 16) | (g << 8) | b).toString(16);
+}
+const copyComplete = () => {
+	copyMsg.classList.add("appear-msg");
+	setTimeout(() => copyMsg.classList.remove("appear-msg"), 1000);
+};
 
 const setCanvasGradiant = (ctx) => {
 	ctx.rect(0, 0, canvas.width, canvas.height);
@@ -28,12 +38,14 @@ const copyHex = function (e) {
 	copyComplete();
 };
 
-setCanvasGradiant(ctx);
+(function initCanvas() {
+	canvasSizeChange();
+	setCanvasGradiant(ctx);
+})();
 
 canvas.addEventListener("click", copyHex);
 
 window.addEventListener("resize", (e) => {
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
+	canvasSizeChange();
 	setCanvasGradiant(canvas.getContext("2d"));
 });
