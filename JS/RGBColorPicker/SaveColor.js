@@ -167,8 +167,13 @@ const registColor = (e) => {
 	appendCircle();
 };
 
-(function initColor() {
-	setLocalStorageItem([]);
+(function loadColor() {
+	const localStorageColor = getLocalStorageItem();
+	if (!localStorageColor) setLocalStorageItem([]);
+	localStorageColor.forEach((val) => {
+		appendColor(val.colorHex);
+		appendCircle();
+	});
 })();
 
 colorRegistBtn.addEventListener("submit", registColor);
