@@ -4,14 +4,26 @@ const colorValue = document.querySelector(".color-code-input");
 const colorRegistBtn = document.querySelector(".color-submit-form");
 const colorsContainer = document.querySelector(".menu-large-rgb-container");
 const circleContainer = document.querySelector(".menu-mini-circle-container");
+const LOCAL_SOTRAGE_KEY = "Color_Picker";
 
 let $circles = null,
 	$info_rgb = null,
 	$info_del = null;
 
+const setLocalStorageItem = (colorObj) => {
+	localStorage.setItem(LOCAL_SOTRAGE_KEY, JSON.stringify(colorObj));
+};
+
+const getLocalStorageItem = () => {
+	return JSON.parse(localStorage.getItem(LOCAL_SOTRAGE_KEY));
+};
+
 const makeCircle = () => {
 	const circle = document.createElement("div");
-	circle.classList.add("menu-mini-circle", `circle-${localStorage.length}`);
+	circle.classList.add(
+		"menu-mini-circle",
+		`circle-${getLocalStorageItem().length}`
+	);
 	return circle;
 };
 
@@ -19,9 +31,15 @@ const circleHexClick = (e) => {
 	const colorNum = e.target.classList[1].slice(
 		e.target.classList[0] === "menu-mini-circle" ? 7 : 6
 	);
-
-	const colorTxt = localStorage.getItem("color-" + colorNum);
-
+	const localStorageColor = getLocalStorageItem();
+	const colorTxt = localStorageColor.reduce(
+		(acc, val) => acc + (val.color === "color-" + colorNum ? val.colorHex : ""),
+		""
+	);
+	if (colorTxt === "") {
+		alert("circleHexClick");
+		return;
+	}
 	navigator.clipboard.writeText(colorTxt);
 	copyComplete(); // ./RGBColorPicker.js 확인.
 };
@@ -36,23 +54,29 @@ const assignCircleEvent = () => {
 
 const appendCircle = () => {
 	circleContainer.appendChild(makeCircle());
+
 	assignCircleSelector();
 	assignCircleEvent();
 };
 
 const deleteCircleAndInfo = (e) => {
+	const targrtParent = e.target.parentNode.parentNode;
 	const targetColorNum = e.target.classList[3].slice(7);
 	const menuMiniCircle = document.querySelector(".menu-mini-circle-container");
+
 	menuMiniCircle.removeChild(
 		menuMiniCircle.querySelector(`.circle-${targetColorNum}`)
 	);
-	const targrtParent = e.target.parentNode.parentNode;
 
 	targrtParent.removeChild(
 		targrtParent.querySelector(`.color-container-${targetColorNum}`)
 	);
 
-	localStorage.removeItem(`color-${targetColorNum}`);
+	setLocalStorageItem(
+		getLocalStorageItem().filter(
+			(val) => val.color !== `color-${targetColorNum}`
+		)
+	);
 };
 
 const assignInfoSelector = () => {
@@ -71,20 +95,20 @@ const makeColorInfoTags = (colorCode) => {
 	const menu_large_rgb = document.createElement("div");
 	const menu_large_info_rgb = document.createElement("span");
 	const menu_large_info_del = document.createElement("span");
-
+	const localStorageColor = getLocalStorageItem();
 	menu_large_rgb.classList.add(
 		"menu-large-rgb",
-		`color-container-${localStorage.length}`
+		`color-container-${localStorageColor.length}`
 	);
 	menu_large_info_rgb.classList.add(
 		"menu-large-info-rgb",
-		`color-${localStorage.length}`
+		`color-${localStorageColor.length}`
 	);
 	menu_large_info_del.classList.add(
 		"menu-large-info-del",
 		"material-icons",
 		"orange500",
-		`delete-${localStorage.length}`
+		`delete-${localStorageColor.length}`
 	);
 
 	menu_large_info_rgb.textContent = colorCode;
@@ -104,24 +128,47 @@ const appendColor = (colorCode) => {
 	colorValue.value = null;
 };
 
-const registColor = (e) => {
-	e.preventDefault();
+const registLocalSorage = () => {
+	var localStorageColor = getLocalStorageItem();
+
+	setLocalStorageItem([
+		...localStorageColor,
+		{
+			color: `color-${localStorageColor.length + 1}`,
+			colorHex: colorValue.value,
+		},
+	]);
+};
+
+const checkIsHex = () => {
 	if (
 		colorValue.value === "" ||
 		!colorValue.value.match(/(^[#])/g) ||
-		colorValue.value.length < 7
+		colorValue.value.length !== 7
 	) {
 		alert("색깔을 입력해주세요!");
-		return;
+		return false;
 	}
-	if (localStorage.length >= 5) {
+	if (getLocalStorageItem().length >= 5) {
 		alert("색깔은 최대 5가지만 가능합니다!");
-		return;
+		return false;
 	}
-	localStorage.setItem(`color-${localStorage.length + 1}`, colorValue.value);
+	return true;
+};
+
+const registColor = (e) => {
+	e.preventDefault();
+
+	if (!checkIsHex()) return;
+
+	registLocalSorage();
 
 	appendColor(colorValue.value);
 	appendCircle();
 };
+
+(function initColor() {
+	setLocalStorageItem([]);
+})();
 
 colorRegistBtn.addEventListener("submit", registColor);
