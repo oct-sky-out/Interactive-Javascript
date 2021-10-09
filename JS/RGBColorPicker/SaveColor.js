@@ -1,9 +1,9 @@
 "use strict";
 
-const colorValue = document.querySelector(".color-code-input");
-const colorRegistBtn = document.querySelector(".color-submit-form");
-const colorsContainer = document.querySelector(".menu-large-rgb-container");
-const circleContainer = document.querySelector(".menu-mini-circle-container");
+const $colorValue = document.querySelector(".color-code-input");
+const $colorRegistBtn = document.querySelector(".color-submit-form");
+const $colorsContainer = document.querySelector(".menu-large-rgb-container");
+const $circleContainer = document.querySelector(".menu-mini-circle-container");
 const LOCAL_SOTRAGE_KEY = "Color_Picker";
 
 let $circles = null,
@@ -18,13 +18,22 @@ const getLocalStorageItem = () => {
 	return JSON.parse(localStorage.getItem(LOCAL_SOTRAGE_KEY));
 };
 
-const makeCircle = () => {
-	const circle = document.createElement("div");
-	circle.classList.add(
-		"menu-mini-circle",
-		`circle-${getLocalStorageItem().length}`
-	);
-	return circle;
+const makeCircle = (colorCode, colorId = 0) => {
+	const $circle = document.createElement("div");
+	const $pickCircle = document.createElement("div");
+
+	$pickCircle.classList.add("circle-pick-color");
+	$pickCircle.style.backgroundColor = colorCode;
+	$circle.append($pickCircle);
+
+	const circleMakeClassList = (classId) => {
+		$circle.classList.add("menu-mini-circle", `circle-${classId}`);
+	};
+
+	if (colorId === 0) circleMakeClassList(getLocalStorageItem().length);
+	else circleMakeClassList(colorId);
+
+	return $circle;
 };
 
 const circleHexClick = (e) => {
@@ -52,24 +61,24 @@ const assignCircleEvent = () => {
 	$circles.forEach((node) => node.addEventListener("click", circleHexClick));
 };
 
-const appendCircle = () => {
-	circleContainer.appendChild(makeCircle());
+const appendCircle = (colorCode, colorId) => {
+	$circleContainer.appendChild(makeCircle(colorCode, colorId));
 
 	assignCircleSelector();
 	assignCircleEvent();
 };
 
 const deleteCircleAndInfo = (e) => {
-	const targrtParent = e.target.parentNode.parentNode;
+	const $targrtParent = e.target.parentNode.parentNode;
+	const $menuMiniCircle = document.querySelector(".menu-mini-circle-container");
 	const targetColorNum = e.target.classList[3].slice(7);
-	const menuMiniCircle = document.querySelector(".menu-mini-circle-container");
 
-	menuMiniCircle.removeChild(
-		menuMiniCircle.querySelector(`.circle-${targetColorNum}`)
+	$menuMiniCircle.removeChild(
+		$menuMiniCircle.querySelector(`.circle-${targetColorNum}`)
 	);
 
-	targrtParent.removeChild(
-		targrtParent.querySelector(`.color-container-${targetColorNum}`)
+	$targrtParent.removeChild(
+		$targrtParent.querySelector(`.color-container-${targetColorNum}`)
 	);
 
 	setLocalStorageItem(
@@ -91,41 +100,47 @@ const assignInfoEvent = () => {
 	);
 };
 
-const makeColorInfoTags = (colorCode) => {
-	const menu_large_rgb = document.createElement("div");
-	const menu_large_info_rgb = document.createElement("span");
-	const menu_large_info_del = document.createElement("span");
+const makeColorInfoTags = (colorCode, colorId = 0) => {
+	const $menu_large_rgb = document.createElement("div");
+	const $menu_large_info_rgb = document.createElement("span");
+	const $menu_large_info_del = document.createElement("span");
 	const localStorageColor = getLocalStorageItem();
-	menu_large_rgb.classList.add(
-		"menu-large-rgb",
-		`color-container-${localStorageColor.length}`
-	);
-	menu_large_info_rgb.classList.add(
-		"menu-large-info-rgb",
-		`color-${localStorageColor.length}`
-	);
-	menu_large_info_del.classList.add(
-		"menu-large-info-del",
-		"material-icons",
-		"orange500",
-		`delete-${localStorageColor.length}`
-	);
 
-	menu_large_info_rgb.textContent = colorCode;
-	menu_large_info_del.textContent = "delete";
+	const rgbMakeClassList = (classNum) => {
+		$menu_large_rgb.classList.add(
+			"menu-large-rgb",
+			`color-container-${classNum}`
+		);
+		$menu_large_info_rgb.classList.add(
+			"menu-large-info-rgb",
+			`color-${classNum}`
+		);
+		$menu_large_info_del.classList.add(
+			"menu-large-info-del",
+			"material-icons",
+			"orange500",
+			`delete-${classNum}`
+		);
+	};
 
-	return [menu_large_rgb, menu_large_info_rgb, menu_large_info_del];
+	if (colorId === 0) rgbMakeClassList(localStorageColor.length);
+	else rgbMakeClassList(colorId);
+
+	$menu_large_info_rgb.textContent = colorCode;
+	$menu_large_info_del.textContent = "delete";
+
+	return [$menu_large_rgb, $menu_large_info_rgb, $menu_large_info_del];
 };
 
-const appendColor = (colorCode) => {
-	const [large_rgb, info_rgb, info_del] = makeColorInfoTags(colorCode);
+const appendColor = (colorCode, colorId = 0) => {
+	const [large_rgb, info_rgb, info_del] = makeColorInfoTags(colorCode, colorId);
 
 	large_rgb.append(info_rgb, info_del);
-	colorsContainer.append(large_rgb);
+	$colorsContainer.append(large_rgb);
 	assignInfoSelector();
 	assignInfoEvent();
 
-	colorValue.value = null;
+	$colorValue.value = null;
 };
 
 const registLocalSorage = () => {
@@ -135,16 +150,16 @@ const registLocalSorage = () => {
 		...localStorageColor,
 		{
 			color: `color-${localStorageColor.length + 1}`,
-			colorHex: colorValue.value,
+			colorHex: $colorValue.value,
 		},
 	]);
 };
 
 const checkIsHex = () => {
 	if (
-		colorValue.value === "" ||
-		!colorValue.value.match(/(^[#])/g) ||
-		colorValue.value.length !== 7
+		$colorValue.value === "" ||
+		!$colorValue.value.match(/(^[#])/g) ||
+		$colorValue.value.length !== 7
 	) {
 		alert("색깔을 입력해주세요!");
 		return false;
@@ -159,12 +174,14 @@ const checkIsHex = () => {
 const registColor = (e) => {
 	e.preventDefault();
 
+	const color = $colorValue.value;
+
 	if (!checkIsHex()) return;
 
 	registLocalSorage();
-
-	appendColor(colorValue.value);
-	appendCircle();
+	appendColor(color);
+	appendCircle(color);
+	userSavedColorCodeChangeColor(); // RGBColorPicker.js
 };
 
 (function loadColor() {
@@ -173,9 +190,11 @@ const registColor = (e) => {
 	if (localStorageColor == "") setLocalStorageItem(localStorageColor);
 
 	localStorageColor.forEach((val) => {
-		appendColor(val.colorHex);
-		appendCircle();
+		appendColor(val.colorHex, val.color.slice(6));
+		appendCircle(val.colorHex, val.color.slice(6));
+		// RGBColorPicker.js
 	});
+	userSavedColorCodeChangeColor();
 })();
 
-colorRegistBtn.addEventListener("submit", registColor);
+$colorRegistBtn.addEventListener("submit", registColor);
