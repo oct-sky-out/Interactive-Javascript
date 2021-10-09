@@ -37,7 +37,7 @@ const circleHexClick = (e) => {
 		""
 	);
 	if (colorTxt === "") {
-		alert("circleHexClick");
+		alert("이미 삭제된 항목입니다. 새로고침을 한번 해주세요!");
 		return;
 	}
 	navigator.clipboard.writeText(colorTxt);
@@ -129,7 +129,7 @@ const appendColor = (colorCode) => {
 };
 
 const registLocalSorage = () => {
-	var localStorageColor = getLocalStorageItem();
+	var localStorageColor = getLocalStorageItem() || [];
 
 	setLocalStorageItem([
 		...localStorageColor,
@@ -168,8 +168,10 @@ const registColor = (e) => {
 };
 
 (function loadColor() {
-	const localStorageColor = getLocalStorageItem();
-	if (!localStorageColor) setLocalStorageItem([]);
+	const localStorageColor = getLocalStorageItem() || [];
+
+	if (localStorageColor == "") setLocalStorageItem(localStorageColor);
+
 	localStorageColor.forEach((val) => {
 		appendColor(val.colorHex);
 		appendCircle();
