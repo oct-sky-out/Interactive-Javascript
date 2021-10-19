@@ -98,11 +98,11 @@ const setCanvasGradiant = (ctx, bgColorIdx = 0) => {
 
 /**
  * @name copyHex
- * @param {*} e
+ * @param {MouseEvent} e
  * @returns {void}
  * @todos 캔버스 배경을 클릭 시 클립보드에 hex값이 복사됩니다.
  */
-const copyHex = (e) => {
+const copyHex = function (e) {
 	var x = e.offsetX;
 	var y = e.offsetY;
 	var [r, g, b] = this.getContext('2d').getImageData(x, y, 1, 1).data;
