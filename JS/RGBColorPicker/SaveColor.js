@@ -1,5 +1,13 @@
 'use strict';
-import { localStorageColorType } from './modules/type.js';
+
+/**
+ * 타입
+ */
+const localStorageColorType = {
+	color: '',
+	colorHex: '',
+};
+
 /**
  * ------------------- 변수 참고 -------------------
  * 앞에 $가 붙는 변수는 Document의 Elements 변수들입니다.

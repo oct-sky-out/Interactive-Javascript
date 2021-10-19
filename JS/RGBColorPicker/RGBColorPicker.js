@@ -1,5 +1,13 @@
 'use strict';
-import { canvasBackgroundGradationColorType } from './modules/type';
+
+/**
+ * 타입
+ */
+const canvasBackgroundGradationColorType = {
+	bg1: '',
+	bg2: '',
+};
+
 /**
  * ------------------- 변수 참고 -------------------
  * 앞에 $가 붙는 변수는 Document의 Elements 변수들입니다.
