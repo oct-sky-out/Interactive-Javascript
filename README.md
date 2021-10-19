@@ -17,6 +17,5 @@
 
 <h3> 6번째 작품 : 컬러피커 만들기 💅</h3>
   <a href ="https://oct-sky-out.github.io/Interactive-Javascript/html/RGBColorPicker.html">  작품 보기</a>
-  <span>제작중입니다.🚧</span>
   
 <h4> 👋 다음작품도 기대해주세요~ 👋</h4>
