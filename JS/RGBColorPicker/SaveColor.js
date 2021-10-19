@@ -75,7 +75,10 @@ const makeCircle = (colorCode, colorId = 0) => {
 	const $circle = document.createElement('div');
 	const $pickCircle = document.createElement('div');
 
-	$pickCircle.classList.add('circle-pick-color');
+	$pickCircle.classList.add(
+		'circle-pick-color',
+		`circle-${getLocalStorageItem().length}`
+	);
 	$pickCircle.style.backgroundColor = colorCode;
 	$circle.append($pickCircle);
 
@@ -100,7 +103,10 @@ const circleHexClick = (e) => {
 	// ! copyComplete()은 ./RGBColorPicker.js 확인.
 
 	const colorNum = e.target.classList[1].slice(
-		e.target.classList[0] === 'menu-mini-circle' ? 7 : 6
+		e.target.classList[0] === 'menu-mini-circle' ||
+			e.target.classList[0] === 'circle-pick-color'
+			? 7
+			: 6
 	);
 	const localStorageColor = getLocalStorageItem();
 	const colorTxt = localStorageColor.reduce(
