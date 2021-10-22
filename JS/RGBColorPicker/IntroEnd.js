@@ -2,12 +2,6 @@
  * ------------------- 변수 참고 -------------------
  * 앞에 $가 붙는 변수는 Document의 Elements 변수들입니다.
  * -----------------------------------------------
- *
- * const 변수
- * $container : 컬러피커 화면 전체를 감싸는 div element입니다.
- */
-var $container = document.getElementById('container');
-
 /**
  * @name endIntro
  * @param {void}
@@ -15,7 +9,9 @@ var $container = document.getElementById('container');
  * @todo 처음 시작할 때 검은화면에 글자가 사라지는 효과가 끝난 후 검은화면을 HTML Dom에서 삭제하도록 만들었습니다.
  */
 const endIntro = () => {
-	var intro = document.querySelector('.page-intro');
+	/** @type {HTMLDivElement}  컬러피커 화면 전체를 감싸는 div element입니다.*/
+	let $container = document.getElementById('container');
+	let intro = document.querySelector('.page-intro');
 	$container.removeChild(intro);
 };
 
