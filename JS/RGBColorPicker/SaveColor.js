@@ -1,9 +1,12 @@
 'use strict';
-import { localStorageColorType } from './types/type.js';
-import {
-	userSavedColorCodeChangeColor,
-	copyComplete,
-} from './RGBColorPicker.js';
+
+/**
+ * 타입
+ */
+const localStorageColorType = {
+	color: '',
+	colorHex: '',
+};
 
 /**
  * ------------------- 변수 참고 -------------------
@@ -11,24 +14,35 @@ import {
  * -----------------------------------------------
  *
  * cosnt 변수들
+ *
  * $colorValue : 메뉴의 컬러값을 입력하는 input element입니다.
+ * $colorRegistBtn : 컬러값을 복사 후 등록하는 button element입니다.
+ * $colorsContainer : 등록한 컬러값을 감싸는 div element입니다.
+ * $circleContainer : 등록한 컬러 색상 버튼을 감싸는 div element입니다.,
  * LOCAL_SOTRAGE_KEY : 로컬 스토리지의 키 값입니다.
- * ----iconObj----
+ *
+ * let 변수들
  * $circles : 컬러값을 등록 후 색상 버튼이 생성되는 div element들입니다.
  * $info_rgbs : 컬러값을 등록 후 생삭 값(HEX)들이 상세 메뉴에 생성되는 span element들입니다.
  * $info_del : 각 등록된 컬러값을 제거하고싶을 때 사용하는 제거 span element들입니다.
  */
 /** @type {HTMLInputElement} */
 const $colorValue = document.querySelector('.color-code-input');
+/** @type {HTMLFormElement} */
+const $colorRegistBtn = document.querySelector('.color-submit-form');
+/** @type {HTMLDivElement} */
+const $colorsContainer = document.querySelector('.menu-large-rgb-container');
+/** @type {HTMLDivElement} */
+const $circleContainer = document.querySelector('.menu-mini-circle-container');
 /** @type {string} */
 const LOCAL_SOTRAGE_KEY = 'Color_Picker';
 
-/** @type {{$circles : HtmlDivElement[], $info_rgbs: HTMLSpanElement[], $info_del : HTMLSpanElement[]}} */
-const iconObj = {
-	$circles: [],
-	$info_rgbs: [],
-	$info_del: [],
-};
+/** @type {HtmlDivElement[]} */
+let $circles = null,
+	/** @type {HTMLSpanElement[]} */
+	$info_rgbs = null,
+	/** @type {HTMLSpanElement[]} */
+	$info_del = null;
 
 /**
  * @name setLocalStorageItem
@@ -86,6 +100,8 @@ const makeCircle = (colorCode, colorId = 0) => {
  * @todo 색깔 아이콘을 클릭 시 클립보드에 색깔 값을 저장.
  */
 const circleHexClick = (e) => {
+	// ! copyComplete()은 ./RGBColorPicker.js 확인.
+
 	const colorNum = e.target.classList[1].slice(
 		e.target.classList[0] === 'menu-mini-circle' ||
 			e.target.classList[0] === 'circle-pick-color'
@@ -112,7 +128,7 @@ const circleHexClick = (e) => {
  * @todo menu-mini-circle클래스(저장된 색깔 아이콘들)를 가진 모든 elements 리턴
  */
 const assignCircleSelector = () => {
-	iconObj.$circles = document.querySelectorAll('.menu-mini-circle');
+	$circles = document.querySelectorAll('.menu-mini-circle');
 };
 
 /**
@@ -122,9 +138,7 @@ const assignCircleSelector = () => {
  * @todo menu-mini-circle클래스(저장된 색깔 아이콘)들에게 클릭 이벤트와 콜백 circleHexClick 생성
  */
 const assignCircleEvent = () => {
-	iconObj.$circles.forEach((node) =>
-		node.addEventListener('click', circleHexClick)
-	);
+	$circles.forEach((node) => node.addEventListener('click', circleHexClick));
 };
 
 /**
@@ -134,11 +148,6 @@ const assignCircleEvent = () => {
  * @todo 색깔 아이콘들을 감싸는 컨테이너에 아이콘을 생성 한 후 이벤트 주입.
  */
 const appendCircle = (colorCode, colorId) => {
-	/** @type {HTMLDivElement} 등록한 컬러 색상 버튼을 감싸는 div element입니다. */
-	const $circleContainer = document.querySelector(
-		'.menu-mini-circle-container'
-	);
-
 	$circleContainer.appendChild(makeCircle(colorCode, colorId));
 
 	assignCircleSelector();
@@ -179,8 +188,8 @@ const deleteCircleAndInfo = (e) => {
  * @todo 등록된 색깔 값 코드와 삭제 버튼들을 모두 불러옴.
  */
 const assignInfoSelector = () => {
-	iconObj.$info_rgbs = document.querySelectorAll('.menu-large-info-rgb');
-	iconObj.$info_del = document.querySelectorAll('.menu-large-info-del');
+	$info_rgbs = document.querySelectorAll('.menu-large-info-rgb');
+	$info_del = document.querySelectorAll('.menu-large-info-del');
 };
 
 /**
@@ -190,10 +199,8 @@ const assignInfoSelector = () => {
  * @todo 등록된 색깔 값 코드와 삭제 버튼들에 이벤트 주입.
  */
 const assignInfoEvent = () => {
-	iconObj.$info_rgbs.forEach((node) =>
-		node.addEventListener('click', circleHexClick)
-	);
-	iconObj.$info_del.forEach((node) =>
+	$info_rgbs.forEach((node) => node.addEventListener('click', circleHexClick));
+	$info_del.forEach((node) =>
 		node.addEventListener('click', deleteCircleAndInfo)
 	);
 };
@@ -246,8 +253,6 @@ const makeColorInfoTags = (colorCode, colorId = 0) => {
  *  info_rgb, info_del를 large_rgb에 종속 시킨 후 이벤트 주입.
  */
 const appendColor = (colorCode, colorId = 0) => {
-	/** @type {HTMLDivElement} 등록한 컬러값을 감싸는 div element입니다.*/
-	const $colorsContainer = document.querySelector('.menu-large-rgb-container');
 	const [large_rgb, info_rgb, info_del] = makeColorInfoTags(colorCode, colorId);
 
 	large_rgb.append(info_rgb, info_del);
@@ -315,7 +320,7 @@ const registColor = (e) => {
 	registLocalSorage();
 	appendColor(color);
 	appendCircle(color);
-	userSavedColorCodeChangeColor();
+	userSavedColorCodeChangeColor(); // RGBColorPicker.js
 };
 
 /***********
@@ -325,8 +330,6 @@ const registColor = (e) => {
  *  */
 
 (function IIFE_LoadColor() {
-	/** @type {HTMLFormElement} 컬러값을 복사 후 등록하는 button element입니다. */
-	const $colorRegistBtn = document.querySelector('.color-submit-form');
 	const localStorageColor = getLocalStorageItem() || [];
 
 	if (localStorageColor == '') setLocalStorageItem(localStorageColor);
@@ -334,9 +337,9 @@ const registColor = (e) => {
 	localStorageColor.forEach((val) => {
 		appendColor(val.colorHex, val.color.slice(6));
 		appendCircle(val.colorHex, val.color.slice(6));
+		// RGBColorPicker.js
 	});
-
 	userSavedColorCodeChangeColor();
-
-	$colorRegistBtn.addEventListener('submit', registColor);
 })();
+
+$colorRegistBtn.addEventListener('submit', registColor);
