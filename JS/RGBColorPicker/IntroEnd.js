@@ -16,7 +16,7 @@ const endIntro = () => {
 };
 
 /**
- * IIFE_EndIntro는 setTimeout 5초 후에 endIntro는 화면 시작하도록 만들었습니다.
+ * IIFE_EndIntro는 setTimeout 5초 후에 endIntro를 html이 열리자 마자, 시작하도록 만들었습니다.
  */
 (function IIFE_EndIntro() {
 	setTimeout(endIntro, 5000);
